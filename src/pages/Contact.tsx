@@ -48,7 +48,6 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // In a real implementation, this would send the form data
     alert('Thank you for your inquiry. The school will respond to your message shortly.')
     setFormData({ name: '', email: '', subject: '', message: '' })
   }
@@ -56,9 +55,17 @@ export default function Contact() {
   return (
     <div>
       {/* Hero */}
-      <section className="border-b" style={{ borderColor: 'var(--border-primary)' }}>
-        <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-          <span className="mono-label mb-4 block">Contact</span>
+      <section className="hero-image-section border-b" style={{ borderColor: 'var(--border-primary)' }}>
+        <div
+          className="hero-bg"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1592280771190-3e2e4d571952?w=1600&h=900&fit=crop)',
+          }}
+        />
+        <div className="hero-content mx-auto max-w-7xl px-4 py-24 lg:px-8 lg:py-32">
+          <span className="mono-label mb-4 inline-block border px-3 py-1.5" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-secondary)' }}>
+            Contact
+          </span>
           <h1
             style={{
               fontWeight: 200,
@@ -80,9 +87,9 @@ export default function Contact() {
       {/* Contact Info */}
       <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <SectionHeader label="Details" title="Contact Information" />
-        <div className="mt-10 grid grid-cols-1 gap-px md:grid-cols-2" style={{ backgroundColor: 'var(--border-primary)' }}>
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
           {contactInfo.map((info) => (
-            <div key={info.label} className="card">
+            <div key={info.label} className="card" style={{ borderLeft: `3px solid ${info.color}` }}>
               <div className="mb-2 flex items-center gap-2">
                 <span className="status-dot" style={{ backgroundColor: info.color }} />
                 <span className="mono-label">{info.label}</span>
@@ -114,42 +121,54 @@ export default function Contact() {
       >
         <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
           <SectionHeader label="Directions" title="How to Get Here" />
-          <div className="mt-8 grid grid-cols-1 gap-px md:grid-cols-2" style={{ backgroundColor: 'var(--border-primary)' }}>
-            {directions.map((d) => (
-              <div key={d.from} className="card">
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="mono-tag" style={{ color: 'var(--text-primary)' }}>{d.from}</span>
-                  <span className="mono-label">{d.time}</span>
+          <div className="mt-8 grid grid-cols-1 items-start gap-10 md:grid-cols-2">
+            <div>
+              {directions.map((d, i) => (
+                <div key={d.from} className="card mb-4" style={{ borderLeft: i === 0 ? '3px solid var(--accent-green)' : '3px solid var(--accent-blue)' }}>
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="mono-tag" style={{ color: 'var(--text-primary)' }}>{d.from}</span>
+                    <span className="mono-label">{d.time}</span>
+                  </div>
+                  <p className="text-sm" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
+                    {d.desc}
+                  </p>
                 </div>
-                <p className="text-sm" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
-                  {d.desc}
-                </p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          {/* Map embed placeholder */}
-          <div
-            className="mt-8 flex items-center justify-center border"
-            style={{
-              borderColor: 'var(--border-primary)',
-              backgroundColor: 'var(--bg-tertiary)',
-              height: '300px',
-            }}
-          >
-            <div className="text-center">
-              <span className="mono-label block mb-2">Map</span>
-              <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-                Academy Heights, Brgy. San Sotero, Javier, Leyte
-              </p>
-              <a
-                href="https://www.google.com/maps/search/East+Visayan+Adventist+Academy+Javier+Leyte"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn mt-4 inline-block"
+            {/* Map placeholder with image */}
+            <div className="img-card" style={{ aspectRatio: '16/10' }}>
+              <img
+                src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=400&fit=crop"
+                alt="Map area"
+                loading="lazy"
+                style={{ filter: 'grayscale(60%) contrast(1.1)' }}
+              />
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'rgba(0,0,0,0.3)',
+                }}
               >
-                Open in Maps
-              </a>
+                <span className="mono-label mb-2" style={{ color: '#fff' }}>Location</span>
+                <p className="mb-4 text-sm text-center px-4" style={{ color: 'rgba(255,255,255,0.8)' }}>
+                  Academy Heights, Brgy. San Sotero, Javier, Leyte
+                </p>
+                <a
+                  href="https://www.google.com/maps/search/East+Visayan+Adventist+Academy+Javier+Leyte"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn"
+                  style={{ borderColor: '#fff', color: '#fff' }}
+                >
+                  Open in Maps
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -158,14 +177,50 @@ export default function Contact() {
       {/* Inquiry Form */}
       <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <SectionHeader label="Inquire" title="Send a Message" />
-        <form onSubmit={handleSubmit} className="mt-10 max-w-2xl">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <div>
-              <label className="mono-label mb-2 block">Name</label>
+        <div className="mt-10 grid grid-cols-1 items-start gap-10 md:grid-cols-5">
+          <form onSubmit={handleSubmit} className="md:col-span-3">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div>
+                <label className="mono-label mb-2 block">Name</label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
+                  className="w-full border px-4 py-3 text-sm outline-none"
+                  style={{
+                    borderColor: 'var(--border-primary)',
+                    backgroundColor: 'var(--bg-secondary)',
+                    color: 'var(--text-primary)',
+                    fontFamily: 'Space Grotesk, sans-serif',
+                  }}
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label className="mono-label mb-2 block">Email</label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                  className="w-full border px-4 py-3 text-sm outline-none"
+                  style={{
+                    borderColor: 'var(--border-primary)',
+                    backgroundColor: 'var(--bg-secondary)',
+                    color: 'var(--text-primary)',
+                    fontFamily: 'Space Grotesk, sans-serif',
+                  }}
+                  placeholder="your@email.com"
+                />
+              </div>
+            </div>
+            <div className="mt-6">
+              <label className="mono-label mb-2 block">Subject</label>
               <input
                 type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                value={formData.subject}
+                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 required
                 className="w-full border px-4 py-3 text-sm outline-none"
                 style={{
@@ -174,67 +229,45 @@ export default function Contact() {
                   color: 'var(--text-primary)',
                   fontFamily: 'Space Grotesk, sans-serif',
                 }}
-                placeholder="Your name"
+                placeholder="What is this about?"
               />
             </div>
-            <div>
-              <label className="mono-label mb-2 block">Email</label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            <div className="mt-6">
+              <label className="mono-label mb-2 block">Message</label>
+              <textarea
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 required
-                className="w-full border px-4 py-3 text-sm outline-none"
+                rows={6}
+                className="w-full resize-none border px-4 py-3 text-sm outline-none"
                 style={{
                   borderColor: 'var(--border-primary)',
                   backgroundColor: 'var(--bg-secondary)',
                   color: 'var(--text-primary)',
                   fontFamily: 'Space Grotesk, sans-serif',
                 }}
-                placeholder="your@email.com"
+                placeholder="Your message..."
               />
             </div>
+            <div className="mt-6">
+              <button type="submit" className="btn-filled btn">
+                Send Message
+              </button>
+            </div>
+          </form>
+          <div className="md:col-span-2">
+            <div className="img-card">
+              <img
+                src="https://images.unsplash.com/photo-1562774053-701939374585?w=500&h=600&fit=crop"
+                alt="EVAA Campus"
+                loading="lazy"
+              />
+              <div className="img-overlay">
+                <span className="mono-label" style={{ color: '#fff' }}>Visit Us at EVAA</span>
+              </div>
+            </div>
           </div>
-          <div className="mt-6">
-            <label className="mono-label mb-2 block">Subject</label>
-            <input
-              type="text"
-              value={formData.subject}
-              onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-              required
-              className="w-full border px-4 py-3 text-sm outline-none"
-              style={{
-                borderColor: 'var(--border-primary)',
-                backgroundColor: 'var(--bg-secondary)',
-                color: 'var(--text-primary)',
-                fontFamily: 'Space Grotesk, sans-serif',
-              }}
-              placeholder="What is this about?"
-            />
-          </div>
-          <div className="mt-6">
-            <label className="mono-label mb-2 block">Message</label>
-            <textarea
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              required
-              rows={6}
-              className="w-full resize-none border px-4 py-3 text-sm outline-none"
-              style={{
-                borderColor: 'var(--border-primary)',
-                backgroundColor: 'var(--bg-secondary)',
-                color: 'var(--text-primary)',
-                fontFamily: 'Space Grotesk, sans-serif',
-              }}
-              placeholder="Your message..."
-            />
-          </div>
-          <div className="mt-6">
-            <button type="submit" className="btn-filled btn">
-              Send Message
-            </button>
-          </div>
-        </form>
+        </div>
       </section>
     </div>
   )

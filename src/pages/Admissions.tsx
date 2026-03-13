@@ -6,21 +6,25 @@ const reasons = [
     color: 'var(--accent-green)',
     title: 'Christ-Centered Environment',
     text: 'Every aspect of campus life is grounded in Christian values and Adventist education principles.',
+    img: 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=400&h=250&fit=crop',
   },
   {
     color: 'var(--accent-blue)',
     title: 'Boarding Community',
     text: 'A structured, supportive residential setting where students build independence and lifelong friendships.',
+    img: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=400&h=250&fit=crop',
   },
   {
     color: 'var(--accent-purple)',
     title: 'Holistic Development',
     text: 'Academic rigor combined with spiritual growth, character formation, and practical life skills.',
+    img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=250&fit=crop',
   },
   {
     color: 'var(--accent-yellow)',
     title: 'Peaceful Setting',
     text: 'A quiet hilltop campus surrounded by nature, away from urban distractions, ideal for focused learning.',
+    img: 'https://images.unsplash.com/photo-1592280771190-3e2e4d571952?w=400&h=250&fit=crop',
   },
 ]
 
@@ -45,10 +49,18 @@ const steps = [
 export default function Admissions() {
   return (
     <div>
-      {/* Hero */}
-      <section className="border-b" style={{ borderColor: 'var(--border-primary)' }}>
-        <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-          <span className="mono-label mb-4 block">Admissions</span>
+      {/* Hero with image */}
+      <section className="hero-image-section border-b" style={{ borderColor: 'var(--border-primary)' }}>
+        <div
+          className="hero-bg"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1600&h=900&fit=crop)',
+          }}
+        />
+        <div className="hero-content mx-auto max-w-7xl px-4 py-24 lg:px-8 lg:py-32">
+          <span className="mono-label mb-4 inline-block border px-3 py-1.5" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-secondary)' }}>
+            Admissions
+          </span>
           <h1
             style={{
               fontWeight: 200,
@@ -64,15 +76,21 @@ export default function Admissions() {
             Begin your journey at East Visayan Adventist Academy. We welcome students who seek
             academic excellence within a faith-centered boarding community.
           </p>
+          <div className="mt-8">
+            <Link to="/contact" className="btn-filled btn">Start Your Application</Link>
+          </div>
         </div>
       </section>
 
-      {/* Why EVAA */}
+      {/* Why EVAA with images */}
       <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <SectionHeader label="Why EVAA" title="Why Study Here" />
-        <div className="mt-10 grid grid-cols-1 gap-px md:grid-cols-2" style={{ backgroundColor: 'var(--border-primary)' }}>
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
           {reasons.map((r) => (
-            <div key={r.title} className="card">
+            <div key={r.title} className="card card-hover">
+              <div className="img-card mb-4" style={{ aspectRatio: '16/9' }}>
+                <img src={r.img} alt={r.title} loading="lazy" />
+              </div>
               <div className="mb-3 flex items-center gap-2">
                 <span className="status-dot" style={{ backgroundColor: r.color }} />
                 <span className="mono-tag" style={{ color: 'var(--text-muted)' }}>
@@ -97,8 +115,8 @@ export default function Admissions() {
       >
         <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
           <SectionHeader label="Eligibility" title="Who Can Apply" />
-          <div className="mt-8 grid grid-cols-1 gap-px md:grid-cols-2" style={{ backgroundColor: 'var(--border-primary)' }}>
-            <div className="card">
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="card" style={{ borderLeft: '3px solid var(--accent-blue)' }}>
               <div className="mb-3 flex items-center gap-2">
                 <span className="status-dot" style={{ backgroundColor: 'var(--accent-blue)' }} />
                 <span className="mono-tag" style={{ color: 'var(--text-muted)' }}>JHS</span>
@@ -111,7 +129,7 @@ export default function Admissions() {
                 elementary education or the equivalent grade level for transfer students.
               </p>
             </div>
-            <div className="card">
+            <div className="card" style={{ borderLeft: '3px solid var(--accent-purple)' }}>
               <div className="mb-3 flex items-center gap-2">
                 <span className="status-dot" style={{ backgroundColor: 'var(--accent-purple)' }} />
                 <span className="mono-tag" style={{ color: 'var(--text-muted)' }}>SHS</span>
@@ -131,40 +149,56 @@ export default function Admissions() {
       {/* How to Apply */}
       <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <SectionHeader label="Process" title="How to Apply" />
-        <div className="mt-10 flex flex-col">
-          {steps.map((step, i) => (
-            <div
-              key={step.num}
-              className="row-hover flex items-start gap-6 border-b py-6"
-              style={{
-                borderColor: 'var(--border-primary)',
-                borderTop: i === 0 ? '1px solid var(--border-primary)' : undefined,
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: 'Space Grotesk, sans-serif',
-                  fontWeight: 200,
-                  fontSize: '2rem',
-                  color: 'var(--text-muted)',
-                  lineHeight: 1,
-                  minWidth: '48px',
-                }}
-              >
-                {step.num}
-              </span>
-              <div>
-                <h4 style={{ fontWeight: 400, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
-                  {step.title}
-                </h4>
-                <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>{step.desc}</p>
+        <div className="mt-10 grid grid-cols-1 items-start gap-10 md:grid-cols-5">
+          <div className="md:col-span-3">
+            <div className="flex flex-col">
+              {steps.map((step, i) => (
+                <div
+                  key={step.num}
+                  className="row-hover flex items-start gap-6 border-b py-6"
+                  style={{
+                    borderColor: 'var(--border-primary)',
+                    borderTop: i === 0 ? '1px solid var(--border-primary)' : undefined,
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: 'Space Grotesk, sans-serif',
+                      fontWeight: 200,
+                      fontSize: '2rem',
+                      color: 'var(--text-muted)',
+                      lineHeight: 1,
+                      minWidth: '48px',
+                    }}
+                  >
+                    {step.num}
+                  </span>
+                  <div>
+                    <h4 style={{ fontWeight: 400, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
+                      {step.title}
+                    </h4>
+                    <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="mt-6 text-sm" style={{ color: 'var(--text-muted)' }}>
+              The exact admission process may vary. Please contact the school office for the most current procedures.
+            </p>
+          </div>
+          <div className="md:col-span-2">
+            <div className="img-card">
+              <img
+                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=500&h=600&fit=crop"
+                alt="Students at EVAA"
+                loading="lazy"
+              />
+              <div className="img-overlay">
+                <span className="mono-label" style={{ color: '#fff' }}>Welcome to EVAA</span>
               </div>
             </div>
-          ))}
+          </div>
         </div>
-        <p className="mt-6 text-sm" style={{ color: 'var(--text-muted)' }}>
-          The exact admission process may vary. Please contact the school office for the most current procedures.
-        </p>
       </section>
 
       {/* Requirements */}
@@ -198,7 +232,7 @@ export default function Admissions() {
       {/* Tuition */}
       <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <SectionHeader label="Fees" title="Tuition & Fees" />
-        <div className="mt-8 card max-w-2xl">
+        <div className="mt-8 card max-w-2xl" style={{ borderLeft: '3px solid var(--accent-yellow)' }}>
           <div className="mb-3 flex items-center gap-2">
             <span className="status-dot" style={{ backgroundColor: 'var(--accent-yellow)' }} />
             <span className="mono-tag" style={{ color: 'var(--text-muted)' }}>DepEd Approved</span>
