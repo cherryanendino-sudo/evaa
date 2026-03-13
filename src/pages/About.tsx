@@ -12,18 +12,26 @@ const keyFacts = [
 ]
 
 const leadership = [
-  { role: 'Principal', name: 'Contact school for current administration' },
-  { role: 'Registrar', name: 'Contact school for current administration' },
-  { role: 'Treasurer', name: 'Contact school for current administration' },
+  { role: 'Principal', name: 'Contact school for current administration', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop' },
+  { role: 'Registrar', name: 'Contact school for current administration', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop' },
+  { role: 'Treasurer', name: 'Contact school for current administration', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop' },
 ]
 
 export default function About() {
   return (
     <div>
-      {/* Hero */}
-      <section className="border-b" style={{ borderColor: 'var(--border-primary)' }}>
-        <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-          <span className="mono-label mb-4 block">About EVAA</span>
+      {/* Hero with image */}
+      <section className="hero-image-section border-b" style={{ borderColor: 'var(--border-primary)' }}>
+        <div
+          className="hero-bg"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&h=900&fit=crop)',
+          }}
+        />
+        <div className="hero-content mx-auto max-w-7xl px-4 py-24 lg:px-8 lg:py-32">
+          <span className="mono-label mb-4 inline-block border px-3 py-1.5" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-secondary)' }}>
+            About EVAA
+          </span>
           <h1
             style={{
               fontWeight: 200,
@@ -41,26 +49,50 @@ export default function About() {
         </div>
       </section>
 
-      {/* History */}
+      {/* History with side image */}
       <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <SectionHeader label="History" title="Our Journey" />
-        <div className="mt-8 max-w-3xl">
-          <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-            East Visayan Adventist Academy was opened in 1992 to provide a Christ-centered secondary
-            education for young people in Eastern Visayas. Located on a peaceful hilltop campus in
-            Barangay San Sotero, Javier, Leyte, EVAA was founded under the East Visayan Conference
-            of Seventh-day Adventists and has since operated as a complete secondary boarding school.
-          </p>
-          <p className="mt-4" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-            Over the years, the academy has welcomed students from Tacloban City, Ormoc City, and
-            surrounding towns, offering a quieter alternative to crowded public schools and a
-            community where spiritual growth, academic rigor, and character development are
-            integrated daily.
-          </p>
-          <p className="mt-4" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-            As "The Guardian of Truth," EVAA continues to mold and equip young people for service
-            in this world and for the world to come, staying faithful to its original educational mandate.
-          </p>
+        <div className="mt-8 grid grid-cols-1 items-start gap-10 md:grid-cols-5">
+          <div className="md:col-span-3">
+            <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+              East Visayan Adventist Academy was opened in 1992 to provide a Christ-centered secondary
+              education for young people in Eastern Visayas. Located on a peaceful hilltop campus in
+              Barangay San Sotero, Javier, Leyte, EVAA was founded under the East Visayan Conference
+              of Seventh-day Adventists and has since operated as a complete secondary boarding school.
+            </p>
+            <p className="mt-4" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+              Over the years, the academy has welcomed students from Tacloban City, Ormoc City, and
+              surrounding towns, offering a quieter alternative to crowded public schools and a
+              community where spiritual growth, academic rigor, and character development are
+              integrated daily.
+            </p>
+            <p className="mt-4" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+              As "The Guardian of Truth," EVAA continues to mold and equip young people for service
+              in this world and for the world to come, staying faithful to its original educational mandate.
+            </p>
+          </div>
+          <div className="md:col-span-2">
+            <div className="img-card">
+              <img
+                src="https://images.unsplash.com/photo-1562774053-701939374585?w=500&h=350&fit=crop"
+                alt="EVAA campus view"
+                loading="lazy"
+              />
+              <div className="img-overlay">
+                <span className="mono-label" style={{ color: '#fff' }}>Academy Heights</span>
+              </div>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-1">
+              <div className="stat-card">
+                <div className="stat-label">Year</div>
+                <div className="stat-value">1992</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-label">Years</div>
+                <div className="stat-value">{new Date().getFullYear() - 1992}+</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -95,8 +127,8 @@ export default function About() {
       <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <SectionHeader label="Identity" title="Mission, Vision & Philosophy" />
 
-        <div className="mt-10 grid grid-cols-1 gap-px md:grid-cols-2" style={{ backgroundColor: 'var(--border-primary)' }}>
-          <div className="card">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="card" style={{ borderLeft: '3px solid var(--accent-green)' }}>
             <div className="mb-4 flex items-center gap-2">
               <span className="status-dot" style={{ backgroundColor: 'var(--accent-green)' }} />
               <span className="mono-tag" style={{ color: 'var(--text-muted)' }}>Mission</span>
@@ -108,7 +140,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="card">
+          <div className="card" style={{ borderLeft: '3px solid var(--accent-blue)' }}>
             <div className="mb-4 flex items-center gap-2">
               <span className="status-dot" style={{ backgroundColor: 'var(--accent-blue)' }} />
               <span className="mono-tag" style={{ color: 'var(--text-muted)' }}>Vision</span>
@@ -121,7 +153,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="card mt-px" style={{ borderTop: '1px solid var(--border-primary)' }}>
+        <div className="card mt-6" style={{ borderLeft: '3px solid var(--accent-purple)' }}>
           <div className="mb-4 flex items-center gap-2">
             <span className="status-dot" style={{ backgroundColor: 'var(--accent-purple)' }} />
             <span className="mono-tag" style={{ color: 'var(--text-muted)' }}>Philosophy of Education</span>
@@ -137,11 +169,18 @@ export default function About() {
         </div>
       </section>
 
+      {/* Image Banner */}
+      <div className="image-banner">
+        <img
+          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&h=400&fit=crop"
+          alt="Education and learning"
+          loading="lazy"
+        />
+        <div className="banner-overlay" />
+      </div>
+
       {/* Identity & Affiliation */}
-      <section
-        className="border-t"
-        style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-tertiary)' }}
-      >
+      <section style={{ backgroundColor: 'var(--bg-tertiary)' }}>
         <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
           <SectionHeader label="Governance" title="Affiliation & Accreditation" />
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -190,11 +229,28 @@ export default function About() {
       <section className="border-t" style={{ borderColor: 'var(--border-primary)' }}>
         <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
           <SectionHeader label="Leadership" title="Administration" />
-          <div className="mt-8 grid grid-cols-1 gap-px md:grid-cols-3" style={{ backgroundColor: 'var(--border-primary)' }}>
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
             {leadership.map((person) => (
-              <div key={person.role} className="card">
+              <div key={person.role} className="card flex flex-col items-center text-center">
+                <div
+                  className="mb-4 overflow-hidden border"
+                  style={{
+                    width: '80px',
+                    height: '80px',
+                    borderRadius: '0',
+                    borderColor: 'var(--border-primary)',
+                  }}
+                >
+                  <img
+                    src={person.img}
+                    alt={person.role}
+                    className="h-full w-full object-cover"
+                    style={{ filter: 'grayscale(40%)' }}
+                    loading="lazy"
+                  />
+                </div>
                 <span className="mono-label block mb-2">{person.role}</span>
-                <p style={{ color: 'var(--text-secondary)' }}>{person.name}</p>
+                <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>{person.name}</p>
               </div>
             ))}
           </div>
